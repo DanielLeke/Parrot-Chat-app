@@ -1,0 +1,1 @@
+{"flutter":{"platforms":{"android":{"default":{"projectId":"parrot-chatapp","appId":"1:940147238816:android:f24279afda35997693a6c5","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"parrot-chatapp","configurations":{"android":"1:940147238816:android:f24279afda35997693a6c5","web":"1:940147238816:web:49f6b495cb43499693a6c5"}}}}}}

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "940147238816",
+    "project_id": "parrot-chatapp",
+    "storage_bucket": "parrot-chatapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:940147238816:android:f24279afda35997693a6c5",
+        "android_client_info": {
+          "package_name": "com.example.parrot"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDa_NVE1wU5-EDi4VtdfbtBik6hhmZM7tQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
