@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:parrot/pages/signin.dart';
 import 'package:parrot/services/auth_service.dart';
@@ -196,23 +197,24 @@ class SignupBtn extends StatelessWidget {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
         onPressed: () async {
           AuthService authService = AuthService();
+          FirebaseFirestore _fireStore = FirebaseFirestore.instance;
 
-        String result = await authService.signup(
-            email: _emailController.text, password: _passwordController.text);
+          String result = await authService.signup(
+              email: _emailController.text, password: _passwordController.text);
 
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(
-            result,
-            style: const TextStyle(
-                fontFamily: 'DM Sans', color: Colors.white, fontSize: 14),
-          ),
-          backgroundColor: Colors.grey[850],
-          duration: const Duration(seconds: 3),
-        ));
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(
+              result,
+              style: const TextStyle(
+                  fontFamily: 'DM Sans', color: Colors.white, fontSize: 14),
+            ),
+            backgroundColor: Colors.grey[850],
+            duration: const Duration(seconds: 3),
+          ));
 
-        if (result == 'An account already exists with that email' || result == 'The password provided is too weak') {
-          
-        } else {}
+          if (result == 'An account already exists with that email' ||
+              result == 'The password provided is too weak') {
+          } else {}
         },
         child: const Text(
           "Sign Up",
@@ -239,12 +241,8 @@ class NavBarItem extends StatelessWidget {
         ),
         TextButton(
             onPressed: () {
-              Navigator.push(
-              context, 
-              MaterialPageRoute(
-                builder: (context) => const Signin()
-              )
-            );
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const Signin()));
             },
             child: const Text(
               "Log in",
