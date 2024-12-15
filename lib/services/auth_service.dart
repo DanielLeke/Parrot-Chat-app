@@ -13,9 +13,6 @@ class AuthService {
         message = 'The password provided is too weak';
       } else if (e.code == 'email-already-in-use') {
         message = 'An account already exists with that email';
-      } else if (e.message ==
-          'dev.flutter.pigeon.firebase_auth_platform_interface.FirebaseAuthHostApi.createUserWithEmailAndPassword') {
-        message = 'Please fill in all the fields to continue. Thank you!';
       } else {
         message = 'An error occurred: ${e.message}';
       }
