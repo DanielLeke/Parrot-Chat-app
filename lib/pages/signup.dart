@@ -228,7 +228,7 @@ class SignupBtn extends StatelessWidget {
               result == 'An account already exists with that email') {
           } else {
             Future.delayed(const Duration(seconds: 4), () {
-              Navigator.push(context,
+              Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (context) => const Homepage()));
             });
           }
