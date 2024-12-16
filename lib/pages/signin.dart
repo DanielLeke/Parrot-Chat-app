@@ -173,8 +173,10 @@ class SigninBtn extends StatelessWidget {
               result == 'You entered in an invalid email/password') {
           } else {
             Future.delayed(const Duration(seconds: 4), () {
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => const Homepage()));
+              Navigator.pushAndRemoveUntil(context,
+                  MaterialPageRoute(builder: (context) => const Homepage()),
+                  (Route<dynamic> route) => false,
+              );
             });
           }
         },
