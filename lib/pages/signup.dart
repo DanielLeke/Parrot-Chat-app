@@ -227,8 +227,10 @@ class SignupBtn extends StatelessWidget {
           if (result == 'The password provided is too weak' ||
               result == 'An account already exists with that email') {
           } else {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const Homepage()));
+            Future.delayed(const Duration(seconds: 4), () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const Homepage()));
+            });
           }
         },
         child: const Text(
