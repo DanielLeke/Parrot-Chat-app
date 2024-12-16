@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:parrot/pages/signin.dart';
 import 'package:parrot/services/auth_service.dart';
