@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:parrot/pages/homepage.dart';
 import 'package:parrot/pages/signin.dart';
 import 'package:parrot/services/auth_service.dart';
 
@@ -212,7 +213,12 @@ class SignupBtn extends StatelessWidget {
 
           if (result == 'An account already exists with that email' ||
               result == 'The password provided is too weak') {
-          } else {}
+          } else {
+            Navigator.push(
+              context, 
+              MaterialPageRoute(builder: (context) => const Homepage())
+            );
+          }
         },
         child: const Text(
           "Sign Up",

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:parrot/pages/homepage.dart';
 import 'package:parrot/pages/signup.dart';
+import 'package:parrot/services/auth_service.dart';
 
 TextEditingController _emailController = TextEditingController();
 TextEditingController _passwordController = TextEditingController();
@@ -151,7 +153,31 @@ class SigninBtn extends StatelessWidget {
             fixedSize: const Size(220, 50),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
-        onPressed: () {},
+        onPressed: () async {
+          AuthService authService = AuthService();
+
+          String result = await authService.signin(
+              email: _emailController.text, password: _passwordController.text);
+
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(
+              result,
+              style: const TextStyle(
+                  fontFamily: 'DM Sans', color: Colors.white, fontSize: 14),
+            ),
+            backgroundColor: Colors.grey[850],
+            duration: const Duration(seconds: 3),
+          ));
+
+          if (result == 'No user found for that email.' ||
+              result == 'You entered in an invalid email/password') {
+          } else {
+            Navigator.push(
+              context, 
+              MaterialPageRoute(builder: (context) => const Homepage())
+            );
+          }
+        },
         child: const Text(
           "Sign In",
           style: TextStyle(
