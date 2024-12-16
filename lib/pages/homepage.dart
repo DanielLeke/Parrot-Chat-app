@@ -12,6 +12,13 @@ class Homepage extends StatelessWidget {
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
         centerTitle: true,
+        leading: const CircleAvatar(
+          backgroundColor: Colors.blue,
+          child: Icon(
+            Icons.chat,
+            color: Colors.white,
+          ),
+        ),
         title: const Text(
           'Parrot',
           style: TextStyle(
