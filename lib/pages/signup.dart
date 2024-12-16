@@ -197,7 +197,6 @@ class SignupBtn extends StatelessWidget {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
         onPressed: () async {
           AuthService authService = AuthService();
-          FirebaseFirestore _fireStore = FirebaseFirestore.instance;
 
           String result = await authService.signup(
               email: _emailController.text, password: _passwordController.text);
