@@ -197,27 +197,29 @@ class SignupBtn extends StatelessWidget {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
         onPressed: () async {
           AuthService authService = AuthService();
+          String result = "";
 
-          String result = await authService.signup(
-              email: _emailController.text, password: _passwordController.text);
-
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(
-              result,
-              style: const TextStyle(
-                  fontFamily: 'DM Sans', color: Colors.white, fontSize: 14),
-            ),
-            backgroundColor: Colors.grey[850],
-            duration: const Duration(seconds: 3),
-          ));
-
-          if (result == 'An account already exists with that email' ||
-              result == 'The password provided is too weak') {
+          if (_passwordController.text != _confirmPasswordController.text) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: const Text(
+                "The confirmation password doesn't match. Please try again.",
+                style: const TextStyle(
+                    fontFamily: 'DM Sans', color: Colors.white, fontSize: 14),
+              ),
+              backgroundColor: Colors.grey[850],
+              duration: const Duration(seconds: 3),
+            ));
           } else {
-            Navigator.push(
-              context, 
-              MaterialPageRoute(builder: (context) => const Homepage())
-            );
+            result = await authService.signup(
+                email: _emailController.text,
+                password: _passwordController.text);
+          }
+
+          if (result == 'The password provided is too weak' ||
+              result == 'An account already exists with that email') {
+          } else {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const Homepage()));
           }
         },
         child: const Text(

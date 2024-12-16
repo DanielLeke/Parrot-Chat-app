@@ -9,6 +9,7 @@ class Homepage extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
+          backgroundColor: Colors.blue,
           title: const Text(
             'Parrot',
             style: TextStyle(
