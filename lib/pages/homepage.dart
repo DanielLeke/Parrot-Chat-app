@@ -10,6 +10,7 @@ class Homepage extends StatelessWidget {
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.blue,
+          foregroundColor: Colors.white,
           title: const Text(
             'Parrot',
             style: TextStyle(

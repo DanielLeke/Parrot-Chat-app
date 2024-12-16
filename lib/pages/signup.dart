@@ -213,6 +213,15 @@ class SignupBtn extends StatelessWidget {
             result = await authService.signup(
                 email: _emailController.text,
                 password: _passwordController.text);
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(
+                result,
+                style: const TextStyle(
+                    fontFamily: 'DM Sans', color: Colors.white, fontSize: 14),
+              ),
+              backgroundColor: Colors.grey[850],
+              duration: const Duration(seconds: 3),
+            ));
           }
 
           if (result == 'The password provided is too weak' ||
