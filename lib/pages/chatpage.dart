@@ -49,7 +49,10 @@ class _ChatpageState extends State<Chatpage> {
       body: Column(
         children: [
           Expanded(child: Container()),
-          buildMessageInput(),
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: buildMessageInput(),
+          ),
         ],
       ),
     );
@@ -63,7 +66,7 @@ class _ChatpageState extends State<Chatpage> {
           controller: _messageController,
           cursorColor: Colors.black,
           decoration: InputDecoration(
-            hintText: 'Enter message',
+            hintText: 'Enter a message',
             hintStyle:
                 const TextStyle(fontFamily: "DM Sans", color: Colors.grey),
             enabledBorder: OutlineInputBorder(
@@ -77,11 +80,13 @@ class _ChatpageState extends State<Chatpage> {
           ),
         ),
         ),
+        const SizedBox(width: 10,),
         IconButton(
           onPressed: (){}, 
           icon: const Icon(
             Icons.arrow_upward,
             size: 40,
+            color: Colors.black,
           )
         )
       ],
