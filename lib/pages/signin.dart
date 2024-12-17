@@ -172,7 +172,7 @@ class SigninBtn extends StatelessWidget {
           if (result == 'No user found for that email.' ||
               result == 'You entered in an invalid email/password') {
           } else {
-            Future.delayed(const Duration(seconds: 4), () {
+            Future.delayed(const Duration(seconds: 2), () {
               Navigator.pushAndRemoveUntil(context,
                   MaterialPageRoute(builder: (context) => const Homepage()),
                   (Route<dynamic> route) => false,
