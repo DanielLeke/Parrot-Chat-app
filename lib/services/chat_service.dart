@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:parrot/models/message.dart';
 
 class ChatService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -9,5 +10,13 @@ class ChatService {
     final String currentUserId = _auth.currentUser!.uid;
     final String currentUserEmail = _auth.currentUser!.email.toString();
     final Timestamp timestamp = Timestamp.now();
+
+    Message newMessage = Message(
+      message: message,
+      senderId: currentUserId,
+      senderEmail: currentUserEmail,
+      receiverId: receiverId,
+      timestamp: timestamp
+    );
   }
 }
