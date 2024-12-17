@@ -46,6 +46,45 @@ class _ChatpageState extends State<Chatpage> {
               fontWeight: FontWeight.bold),
         ),
       ),
+      body: Column(
+        children: [
+          Expanded(child: Container()),
+          buildMessageInput(),
+        ],
+      ),
+    );
+  }
+
+  Widget buildMessageInput() {
+    return Row(
+      children: [
+        Expanded(
+          child: TextField(
+          controller: _messageController,
+          cursorColor: Colors.black,
+          decoration: InputDecoration(
+            hintText: 'Enter message',
+            hintStyle:
+                const TextStyle(fontFamily: "DM Sans", color: Colors.grey),
+            enabledBorder: OutlineInputBorder(
+                borderSide: const BorderSide(
+                    color: Colors.black, style: BorderStyle.solid),
+                borderRadius: BorderRadius.circular(5.0)),
+            focusedBorder: OutlineInputBorder(
+                borderSide: const BorderSide(
+                    color: Colors.blue, style: BorderStyle.solid),
+                borderRadius: BorderRadius.circular(5.0)),
+          ),
+        ),
+        ),
+        IconButton(
+          onPressed: (){}, 
+          icon: const Icon(
+            Icons.arrow_upward,
+            size: 40,
+          )
+        )
+      ],
     );
   }
 }
