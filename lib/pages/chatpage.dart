@@ -22,6 +22,13 @@ class _ChatpageState extends State<Chatpage> {
   final ChatService _chatService = ChatService();
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
+  void sendMessage() async {
+    if (_messageController.text.isNotEmpty) {
+      _chatService.sendMessage(widget.receiverUserId, _messageController.text);
+      _messageController.clear();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
