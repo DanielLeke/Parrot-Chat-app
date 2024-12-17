@@ -24,7 +24,14 @@ class _ChatpageState extends State<Chatpage> {
         centerTitle: true,
         foregroundColor: Colors.white,
         backgroundColor: Colors.blue,
-        title: Text(widget.receiverUserName),
+        title: Text(
+          widget.receiverUserName,
+          style: const TextStyle(
+              color: Colors.white,
+              fontFamily: 'DM Sans',
+              fontSize: 22,
+              fontWeight: FontWeight.bold),
+        ),
       ),
     );
   }
