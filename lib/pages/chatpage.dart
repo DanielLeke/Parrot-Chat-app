@@ -59,6 +59,27 @@ class _ChatpageState extends State<Chatpage> {
     );
   }
 
+  Widget buildMessageList() {
+    return StreamBuilder(
+      stream: _chatService.getMessages(
+          widget.receiverUserId, _firebaseAuth.currentUser!.uid),
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return Text("Error${snapshot.error}");
+        } else if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(
+            child: CircularProgressIndicator(
+              color: Colors.blue,
+            ),
+          );
+        }
+        return ListView(
+          children: snapshot.data!.docs.map((document) => buildMessageItem(document)).toList(),
+        );
+      },
+    );
+  }
+
   Widget buildMessageItem(DocumentSnapshot document) {
     Map<String, dynamic> data = document.data() as Map<String, dynamic>;
 
