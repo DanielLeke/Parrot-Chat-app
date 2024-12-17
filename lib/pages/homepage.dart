@@ -4,9 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:parrot/pages/signup.dart';
 import 'package:parrot/services/auth_service.dart';
 
-class Homepage extends StatelessWidget {
-  Homepage({super.key});
+class Homepage extends StatefulWidget {
+  const Homepage({super.key});
 
+  @override
+  State<Homepage> createState() => _HomepageState();
+}
+
+class _HomepageState extends State<Homepage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
@@ -69,7 +74,7 @@ class Homepage extends StatelessWidget {
 
         return ListView(
           children: snapshot.data!.docs.map((doc) {
-            return _buildUserListItem();
+            return _buildUserListItem(doc);
           }).toList(),
         );
       },
@@ -82,6 +87,9 @@ class Homepage extends StatelessWidget {
     if (_auth.currentUser!.email != data['email']) {
       return ListTile(
         title: data['email'],
+        onTap: () {
+          
+        },
       );
     }
   }
