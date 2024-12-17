@@ -19,5 +19,6 @@ class ChatService {
         timestamp: timestamp);
 
     List<String> ids = [currentUserId, receiverId];
+    ids.sort();
   }
 }
