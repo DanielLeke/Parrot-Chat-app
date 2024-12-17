@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:parrot/pages/signup.dart';
-
 class AuthService {
   Future<String> signup(
       {required String email, required String password, required String name}) async {
