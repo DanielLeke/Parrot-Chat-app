@@ -4,7 +4,7 @@ import 'package:parrot/pages/signup.dart';
 
 class AuthService {
   Future<String> signup(
-      {required String email, required String password}) async {
+      {required String email, required String password, required String name}) async {
     String message = '';
     try {
       await FirebaseAuth.instance
@@ -13,7 +13,7 @@ class AuthService {
       FirebaseFirestore.instance
           .collection('users')
           .doc(FirebaseAuth.instance.currentUser!.uid)
-          .set({'uid': FirebaseAuth.instance.currentUser!.uid, 'email': email, 'name': nameController});
+          .set({'uid': FirebaseAuth.instance.currentUser!.uid, 'email': email, 'name': name});
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         message = 'The password provided is too weak';
@@ -30,7 +30,7 @@ class AuthService {
   }
 
   Future<String> signin(
-      {required String email, required String password}) async {
+      {required String email, required String password, required String name}) async {
     String message = '';
     try {
       await FirebaseAuth.instance
@@ -41,7 +41,7 @@ class AuthService {
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .set({'uid': FirebaseAuth.instance.currentUser!.uid, 
                 'email': email,
-                'name': nameController
+                'name': name
           },
               SetOptions(merge: true));
     } on FirebaseAuthException catch (e) {

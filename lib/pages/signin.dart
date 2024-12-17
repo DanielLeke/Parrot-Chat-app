@@ -157,7 +157,10 @@ class SigninBtn extends StatelessWidget {
           AuthService authService = AuthService();
 
           String result = await authService.signin(
-              email: _emailController.text, password: _passwordController.text);
+              email: _emailController.text, 
+              password: _passwordController.text,
+              name: nameController.text
+            );
 
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(

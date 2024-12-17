@@ -258,7 +258,9 @@ class SignupBtn extends StatelessWidget {
           } else {
             result = await authService.signup(
                 email: _emailController.text,
-                password: _passwordController.text);
+                password: _passwordController.text,
+                name: nameController.text
+              );
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(
                 result,
