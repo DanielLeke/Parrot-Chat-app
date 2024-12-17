@@ -97,6 +97,8 @@ class _HomepageState extends State<Homepage> {
                       receiverUserId: data['uid'])));
         },
       );
+    } else {
+      return Container();
     }
   }
 }
