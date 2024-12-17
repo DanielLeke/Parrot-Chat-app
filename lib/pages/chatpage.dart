@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:parrot/services/chat_service.dart';
 
@@ -19,6 +20,7 @@ class Chatpage extends StatefulWidget {
 class _ChatpageState extends State<Chatpage> {
   TextEditingController _messageController = TextEditingController();
   final ChatService _chatService = ChatService();
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
