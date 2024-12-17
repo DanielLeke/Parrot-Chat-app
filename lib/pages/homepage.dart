@@ -50,7 +50,7 @@ class _HomepageState extends State<Homepage> {
           ),
         ),
         title: const Text(
-          'Parrot',
+          'Chats',
           style: TextStyle(
               color: Colors.white,
               fontFamily: 'DM Sans',
