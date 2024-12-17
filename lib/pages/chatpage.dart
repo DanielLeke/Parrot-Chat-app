@@ -20,6 +20,7 @@ class _ChatpageState extends State<Chatpage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
         foregroundColor: Colors.blue,
