@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:parrot/services/chat_service.dart';
 
 class Chatpage extends StatefulWidget {
   final String receiverUserName;
@@ -17,6 +18,7 @@ class Chatpage extends StatefulWidget {
 
 class _ChatpageState extends State<Chatpage> {
   TextEditingController _messageController = TextEditingController();
+  final ChatService _chatService = ChatService();
 
   @override
   Widget build(BuildContext context) {
