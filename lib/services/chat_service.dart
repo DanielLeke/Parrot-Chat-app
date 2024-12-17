@@ -12,11 +12,12 @@ class ChatService {
     final Timestamp timestamp = Timestamp.now();
 
     Message newMessage = Message(
-      message: message,
-      senderId: currentUserId,
-      senderEmail: currentUserEmail,
-      receiverId: receiverId,
-      timestamp: timestamp
-    );
+        message: message,
+        senderId: currentUserId,
+        senderEmail: currentUserEmail,
+        receiverId: receiverId,
+        timestamp: timestamp);
+
+    List<String> ids = [currentUserId, receiverId];
   }
 }
