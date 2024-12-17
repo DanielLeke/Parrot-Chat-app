@@ -69,8 +69,10 @@ class _HomepageState extends State<Homepage> {
         if (snapshot.hasError) {
           return const Text("An error occurred");
         } else if (snapshot.connectionState == ConnectionState.waiting) {
-          return const CircularProgressIndicator(
-            color: Colors.blue,
+          return const Center(
+            child: CircularProgressIndicator(
+              color: Colors.blue,
+            ),
           );
         }
 
