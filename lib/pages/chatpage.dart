@@ -23,7 +23,7 @@ class _ChatpageState extends State<Chatpage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
-        foregroundColor: Colors.blue,
+        foregroundColor: Colors.white,
         backgroundColor: Colors.blue,
         title: Text(widget.receiverUserEmail),
       ),
