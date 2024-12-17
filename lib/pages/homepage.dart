@@ -87,7 +87,7 @@ class _HomepageState extends State<Homepage> {
 
     if (_auth.currentUser!.email != data['email']) {
       return ListTile(
-        title: data['email'],
+        title: Text(data['email']),
         onTap: () {
           Navigator.push(
               context,
