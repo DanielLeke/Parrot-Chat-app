@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:parrot/pages/signup.dart';
 
 class AuthService {
   Future<String> signup(
@@ -38,7 +39,10 @@ class AuthService {
       FirebaseFirestore.instance
           .collection('users')
           .doc(FirebaseAuth.instance.currentUser!.uid)
-          .set({'uid': FirebaseAuth.instance.currentUser!.uid, 'email': email},
+          .set({'uid': FirebaseAuth.instance.currentUser!.uid, 
+                'email': email,
+                'name': nameController
+          },
               SetOptions(merge: true));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {

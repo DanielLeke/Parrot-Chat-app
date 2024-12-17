@@ -3,6 +3,7 @@ import 'package:parrot/pages/homepage.dart';
 import 'package:parrot/pages/signin.dart';
 import 'package:parrot/services/auth_service.dart';
 
+TextEditingController nameController = TextEditingController();
 TextEditingController _emailController = TextEditingController();
 TextEditingController _passwordController = TextEditingController();
 TextEditingController _confirmPasswordController = TextEditingController();
@@ -92,7 +93,7 @@ class Name extends StatelessWidget {
           height: 10,
         ),
         TextField(
-          controller: _emailController,
+          controller: nameController,
           cursorColor: Colors.black,
           decoration: InputDecoration(
             hintText: 'John Doe',
@@ -274,7 +275,7 @@ class SignupBtn extends StatelessWidget {
           } else {
             Future.delayed(const Duration(seconds: 3), () {
               Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => Homepage()));
+                  MaterialPageRoute(builder: (context) => const Homepage()));
             });
           }
         },

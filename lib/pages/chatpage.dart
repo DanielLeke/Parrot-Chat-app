@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 
 class Chatpage extends StatefulWidget {
+  final String receiverUserName;
   final String receiverUserEmail;
   final String receiverUserId;
 
   const Chatpage(
-    {
-      super.key,
+      {super.key,
+      required this.receiverUserName,
       required this.receiverUserEmail,
-      required this.receiverUserId
-    }
-  );
+      required this.receiverUserId});
 
   @override
   State<Chatpage> createState() => _ChatpageState();
@@ -25,7 +24,7 @@ class _ChatpageState extends State<Chatpage> {
         centerTitle: true,
         foregroundColor: Colors.white,
         backgroundColor: Colors.blue,
-        title: Text(widget.receiverUserEmail),
+        title: Text(widget.receiverUserName),
       ),
     );
   }

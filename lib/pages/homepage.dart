@@ -90,12 +90,14 @@ class _HomepageState extends State<Homepage> {
 
     if (_auth.currentUser!.email != data['email']) {
       return ListTile(
-        title: Text(data['email']),
+        title: Text(data['name']),
+        subtitle: Text(data['email']),
         onTap: () {
           Navigator.push(
               context,
               MaterialPageRoute(
                   builder: (context) => Chatpage(
+                      receiverUserName: data['name'],
                       receiverUserEmail: data['email'],
                       receiverUserId: data['uid'])));
         },
