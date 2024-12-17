@@ -74,9 +74,7 @@ class _HomepageState extends State<Homepage> {
         }
 
         return ListView(
-          children: snapshot.data!.docs.map((doc) {
-            return _buildUserListItem(doc);
-          }).toList(),
+          children: snapshot.data!.docs.map((doc) => _buildUserListItem(doc)).toList(),
         );
       },
     );
