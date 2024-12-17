@@ -58,10 +58,11 @@ class _HomepageState extends State<Homepage> {
               fontWeight: FontWeight.bold),
         ),
       ),
+      body: buildUserList(),
     ));
   }
 
-  Widget buildUserList(DocumentSnapshot document) {
+  Widget buildUserList() {
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance.collection('users').snapshots(),
       builder: (context, snapshot) {
