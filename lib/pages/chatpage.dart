@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:parrot/services/chat_service.dart';
@@ -58,37 +59,56 @@ class _ChatpageState extends State<Chatpage> {
     );
   }
 
+  Widget buildMessageItem(DocumentSnapshot document) {
+    Map<String, dynamic> data = document.data() as Map<String, dynamic>;
+
+    var alignment = (data['senderId'] == _firebaseAuth.currentUser!.uid)
+        ? Alignment.centerRight
+        : Alignment.centerLeft;
+
+    return Container(
+      alignment: alignment,
+      child: Column(
+        children: [
+          Text(data['senderEmail']),
+          Text(data['message']),
+        ],
+      ),
+    );
+  }
+
   Widget buildMessageInput() {
     return Row(
       children: [
         Expanded(
           child: TextField(
-          controller: _messageController,
-          cursorColor: Colors.black,
-          decoration: InputDecoration(
-            hintText: 'Enter a message',
-            hintStyle:
-                const TextStyle(fontFamily: "DM Sans", color: Colors.grey),
-            enabledBorder: OutlineInputBorder(
-                borderSide: const BorderSide(
-                    color: Colors.black, style: BorderStyle.solid),
-                borderRadius: BorderRadius.circular(5.0)),
-            focusedBorder: OutlineInputBorder(
-                borderSide: const BorderSide(
-                    color: Colors.blue, style: BorderStyle.solid),
-                borderRadius: BorderRadius.circular(5.0)),
+            controller: _messageController,
+            cursorColor: Colors.black,
+            decoration: InputDecoration(
+              hintText: 'Enter a message',
+              hintStyle:
+                  const TextStyle(fontFamily: "DM Sans", color: Colors.grey),
+              enabledBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(
+                      color: Colors.black, style: BorderStyle.solid),
+                  borderRadius: BorderRadius.circular(5.0)),
+              focusedBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(
+                      color: Colors.blue, style: BorderStyle.solid),
+                  borderRadius: BorderRadius.circular(5.0)),
+            ),
           ),
         ),
+        const SizedBox(
+          width: 10,
         ),
-        const SizedBox(width: 10,),
         IconButton(
-          onPressed: (){}, 
-          icon: const Icon(
-            Icons.send,
-            size: 40,
-            color: Colors.black,
-          )
-        )
+            onPressed: () {},
+            icon: const Icon(
+              Icons.send,
+              size: 40,
+              color: Colors.black,
+            ))
       ],
     );
   }
