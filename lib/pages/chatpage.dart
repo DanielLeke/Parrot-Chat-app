@@ -49,7 +49,7 @@ class _ChatpageState extends State<Chatpage> {
       ),
       body: Column(
         children: [
-          Expanded(child: Container()),
+          Expanded(child: buildMessageList()),
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: buildMessageInput(),
@@ -124,7 +124,7 @@ class _ChatpageState extends State<Chatpage> {
           width: 10,
         ),
         IconButton(
-            onPressed: () {},
+            onPressed: sendMessage,
             icon: const Icon(
               Icons.send,
               size: 40,
