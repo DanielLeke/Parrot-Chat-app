@@ -22,15 +22,19 @@ class Signin extends StatelessWidget {
             child: Header(),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 48, left: 24, right: 24, bottom: 24),
+            padding: EdgeInsets.only(top: 36, left: 24, right: 24, bottom: 24),
+            child: Name(),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 24, left: 24, right: 24, bottom: 24),
             child: EmailField(),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 36, left: 24, right: 24, bottom: 24),
+            padding: EdgeInsets.only(top: 24, left: 24, right: 24, bottom: 24),
             child: PasswordField(),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 42, left: 24, right: 24, bottom: 24),
+            padding: EdgeInsets.only(top: 36, left: 24, right: 24, bottom: 24),
             child: SigninBtn(),
           ),
         ],
@@ -59,6 +63,46 @@ class Header extends StatelessWidget {
           style: TextStyle(
               fontFamily: "DM Sans", fontWeight: FontWeight.bold, fontSize: 20),
         )
+      ],
+    );
+  }
+}
+
+class Name extends StatelessWidget {
+  const Name({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          "Name",
+          style: TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: 16.5,
+              fontFamily: 'DM Sans'),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        TextField(
+          controller: nameController,
+          cursorColor: Colors.black,
+          decoration: InputDecoration(
+            hintText: 'John Doe',
+            hintStyle:
+                const TextStyle(fontFamily: "DM Sans", color: Colors.grey),
+            enabledBorder: OutlineInputBorder(
+                borderSide: const BorderSide(
+                    color: Colors.black, style: BorderStyle.solid),
+                borderRadius: BorderRadius.circular(5.0)),
+            focusedBorder: OutlineInputBorder(
+                borderSide: const BorderSide(
+                    color: Colors.blue, style: BorderStyle.solid),
+                borderRadius: BorderRadius.circular(5.0)),
+          ),
+        ),
       ],
     );
   }
