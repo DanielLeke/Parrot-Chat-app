@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:parrot/pages/homepage.dart';
 import 'package:parrot/pages/signup.dart';
@@ -200,13 +201,14 @@ class SigninBtn extends StatelessWidget {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
         onPressed: () async {
           AuthService authService = AuthService();
+          dynamic data = FirebaseFirestore.instance.collection('users').doc().get();
 
           String result = await authService.signin(
               email: _emailController.text,
               password: _passwordController.text,
               name: signinNameController.text);
 
-          if (signinNameController.text != nameController.text) {
+          if (signinNameController.text !=  data['name'] as String) {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: const Text(
               "The username provided is incorrect",
