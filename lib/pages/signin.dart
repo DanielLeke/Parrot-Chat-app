@@ -3,7 +3,7 @@ import 'package:parrot/pages/homepage.dart';
 import 'package:parrot/pages/signup.dart';
 import 'package:parrot/services/auth_service.dart';
 
-TextEditingController nameController = TextEditingController();
+TextEditingController signinNameController = TextEditingController();
 TextEditingController _emailController = TextEditingController();
 TextEditingController _passwordController = TextEditingController();
 
@@ -204,7 +204,19 @@ class SigninBtn extends StatelessWidget {
           String result = await authService.signin(
               email: _emailController.text,
               password: _passwordController.text,
-              name: nameController.text);
+              name: signinNameController.text);
+
+          if (signinNameController.text != nameController.text) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: const Text(
+              "The username provided is incorrect",
+              style: const TextStyle(
+                  fontFamily: 'DM Sans', color: Colors.white, fontSize: 14),
+            ),
+            backgroundColor: Colors.grey[850],
+            duration: const Duration(seconds: 3),
+          ));
+          }
 
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(
@@ -217,7 +229,7 @@ class SigninBtn extends StatelessWidget {
           ));
 
           if (result == 'No user found for that email.' ||
-              result == 'You entered in an invalid email/password') {
+              result == 'You entered in an invalid email/password' || signinNameController.text != nameController.text) {
           } else {
             Future.delayed(const Duration(seconds: 3), () {
               Navigator.pushAndRemoveUntil(
