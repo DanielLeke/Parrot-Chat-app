@@ -19,7 +19,7 @@ class Chatpage extends StatefulWidget {
 }
 
 class _ChatpageState extends State<Chatpage> {
-  TextEditingController _messageController = TextEditingController();
+  final TextEditingController _messageController = TextEditingController();
   final ChatService _chatService = ChatService();
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
@@ -91,7 +91,6 @@ class _ChatpageState extends State<Chatpage> {
       alignment: alignment,
       child: Column(
         children: [
-          Text(data['senderEmail']),
           Text(data['message']),
         ],
       ),
