@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:parrot/models/chat_bubble.dart';
 import 'package:parrot/services/chat_service.dart';
 
 class Chatpage extends StatefulWidget {
@@ -95,8 +96,10 @@ class _ChatpageState extends State<Chatpage> {
         crossAxisAlignment: (data['senderId'] == _firebaseAuth.currentUser!.uid)
             ? CrossAxisAlignment.end
             : CrossAxisAlignment.start,
+        mainAxisAlignment: (data['senderId'] == _firebaseAuth.currentUser!.uid) ? MainAxisAlignment.end : MainAxisAlignment.start,
         children: [
-          Text(data['message']),
+          Text(data['senderEmail']),
+          ChatBubble(mesage: data['message']),
         ],
       ),
     );
