@@ -92,15 +92,18 @@ class _ChatpageState extends State<Chatpage> {
 
     return Container(
       alignment: alignment,
-      child: Column(
-        crossAxisAlignment: (data['senderId'] == _firebaseAuth.currentUser!.uid)
-            ? CrossAxisAlignment.end
-            : CrossAxisAlignment.start,
-        mainAxisAlignment: (data['senderId'] == _firebaseAuth.currentUser!.uid) ? MainAxisAlignment.end : MainAxisAlignment.start,
-        children: [
-          Text(data['senderEmail']),
-          ChatBubble(mesage: data['message']),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: (data['senderId'] == _firebaseAuth.currentUser!.uid)
+              ? CrossAxisAlignment.end
+              : CrossAxisAlignment.start,
+          mainAxisAlignment: (data['senderId'] == _firebaseAuth.currentUser!.uid) ? MainAxisAlignment.end : MainAxisAlignment.start,
+          children: [
+            Text(data['senderEmail']),
+            ChatBubble(mesage: data['message']),
+          ],
+        ),
       ),
     );
   }
