@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:parrot/pages/homepage.dart';
 import 'package:parrot/pages/signup.dart';
@@ -89,7 +90,7 @@ class Name extends StatelessWidget {
           height: 10,
         ),
         TextField(
-          controller: nameController,
+          controller: signinNameController,
           cursorColor: Colors.black,
           decoration: InputDecoration(
             hintText: 'John Doe',
@@ -201,17 +202,22 @@ class SigninBtn extends StatelessWidget {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
         onPressed: () async {
           AuthService authService = AuthService();
-          dynamic data = FirebaseFirestore.instance.collection('users').doc().get();
 
           String result = await authService.signin(
               email: _emailController.text,
               password: _passwordController.text,
               name: signinNameController.text);
 
-          if (signinNameController.text !=  data['name'] as String) {
+          dynamic documnet = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .get();
+          Map<String, dynamic> data = documnet.data() as Map<String, dynamic>;
+
+          if (signinNameController.text != data['name']) {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: const Text(
-              "The username provided is incorrect",
+              "The provided username is not correct",
               style: const TextStyle(
                   fontFamily: 'DM Sans', color: Colors.white, fontSize: 14),
             ),
@@ -231,7 +237,7 @@ class SigninBtn extends StatelessWidget {
           ));
 
           if (result == 'No user found for that email.' ||
-              result == 'You entered in an invalid email/password' || signinNameController.text != nameController.text) {
+              result == 'You entered in an invalid email/password' || signinNameController.text != data['name']) {
           } else {
             Future.delayed(const Duration(seconds: 3), () {
               Navigator.pushAndRemoveUntil(

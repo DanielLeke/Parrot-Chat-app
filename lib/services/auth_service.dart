@@ -1,8 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
 class AuthService {
   Future<String> signup(
-      {required String email, required String password, required String name}) async {
+      {required String email,
+      required String password,
+      required String name}) async {
     String message = '';
     try {
       await FirebaseAuth.instance
@@ -11,7 +14,11 @@ class AuthService {
       FirebaseFirestore.instance
           .collection('users')
           .doc(FirebaseAuth.instance.currentUser!.uid)
-          .set({'uid': FirebaseAuth.instance.currentUser!.uid, 'email': email, 'name': name});
+          .set({
+        'uid': FirebaseAuth.instance.currentUser!.uid,
+        'email': email,
+        'name': name
+      });
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         message = 'The password provided is too weak';
@@ -28,7 +35,9 @@ class AuthService {
   }
 
   Future<String> signin(
-      {required String email, required String password, required String name}) async {
+      {required String email,
+      required String password,
+      required String name}) async {
     String message = '';
     try {
       await FirebaseAuth.instance
@@ -37,11 +46,11 @@ class AuthService {
       FirebaseFirestore.instance
           .collection('users')
           .doc(FirebaseAuth.instance.currentUser!.uid)
-          .set({'uid': FirebaseAuth.instance.currentUser!.uid, 
-                'email': email,
-                'name': name
-          },
-              SetOptions(merge: true));
+          .set({
+        'uid': FirebaseAuth.instance.currentUser!.uid,
+        'email': email,
+        'name': name
+      }, SetOptions(merge: true));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         message = 'No user found for that email.';
