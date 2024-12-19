@@ -30,8 +30,13 @@ class Signup extends StatelessWidget {
                 ),
                 Padding(
                   padding:
-                      EdgeInsets.only(top: 20, left: 24, right: 24, bottom: 24),
+                      EdgeInsets.only(top: 12, left: 24, right: 24, bottom: 24),
                   child: EmailField(),
+                ),
+                Padding(
+                  padding:
+                      EdgeInsets.only(top: 12, left: 24, right: 24, bottom: 24),
+                  child: Number(),
                 ),
                 Padding(
                   padding:
@@ -99,6 +104,44 @@ class Name extends StatelessWidget {
             hintText: 'John Doe',
             hintStyle:
                 const TextStyle(fontFamily: "DM Sans", color: Colors.grey),
+            enabledBorder: OutlineInputBorder(
+                borderSide: const BorderSide(
+                    color: Colors.black, style: BorderStyle.solid),
+                borderRadius: BorderRadius.circular(5.0)),
+            focusedBorder: OutlineInputBorder(
+                borderSide: const BorderSide(
+                    color: Colors.blue, style: BorderStyle.solid),
+                borderRadius: BorderRadius.circular(5.0)),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class Number extends StatelessWidget {
+  const Number({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          "Phone Number",
+          style: TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: 16.5,
+              fontFamily: 'DM Sans'),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        TextField(
+          controller: nameController,
+          cursorColor: Colors.black,
+          obscureText: true,
+          decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
                 borderSide: const BorderSide(
                     color: Colors.black, style: BorderStyle.solid),
