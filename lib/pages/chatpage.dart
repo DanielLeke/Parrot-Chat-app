@@ -74,7 +74,9 @@ class _ChatpageState extends State<Chatpage> {
           );
         }
         return ListView(
-          children: snapshot.data!.docs.map((document) => buildMessageItem(document)).toList(),
+          children: snapshot.data!.docs
+              .map((document) => buildMessageItem(document))
+              .toList(),
         );
       },
     );
@@ -90,6 +92,9 @@ class _ChatpageState extends State<Chatpage> {
     return Container(
       alignment: alignment,
       child: Column(
+        crossAxisAlignment: (data['senderId'] == _firebaseAuth.currentUser!.uid)
+            ? CrossAxisAlignment.end
+            : CrossAxisAlignment.start,
         children: [
           Text(data['message']),
         ],
