@@ -286,12 +286,23 @@ class SignupBtn extends StatelessWidget {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
         onPressed: () async {
           AuthService authService = AuthService();
+          String phoneNumber = await authService.getPhoneNumber();
           String result = "";
 
           if (_passwordController.text != _confirmPasswordController.text) {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: const Text(
                 "The confirmation password doesn't match. Please try again.",
+                style: const TextStyle(
+                    fontFamily: 'DM Sans', color: Colors.white, fontSize: 14),
+              ),
+              backgroundColor: Colors.grey[850],
+              duration: const Duration(seconds: 3),
+            ));
+          } else if(phoneNumber == "Invalid phone number") {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: const Text(
+                "You entered an invalid phone number. Please try again.",
                 style: const TextStyle(
                     fontFamily: 'DM Sans', color: Colors.white, fontSize: 14),
               ),
@@ -313,15 +324,16 @@ class SignupBtn extends StatelessWidget {
               backgroundColor: Colors.grey[850],
               duration: const Duration(seconds: 3),
             ));
+            Future.delayed(const Duration(seconds: 3), () {
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => const Homepage()));
+            });
           }
 
           if (result == 'The password provided is too weak' ||
               result == 'An account already exists with that email' || _passwordController.text != _confirmPasswordController.text) {
           } else {
-            Future.delayed(const Duration(seconds: 3), () {
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => const Homepage()));
-            });
+            
           }
         },
         child: const Text(

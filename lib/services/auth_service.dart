@@ -4,6 +4,13 @@ import 'package:parrot/pages/signup.dart';
 import 'package:parrot/services/format_number_service.dart';
 
 class AuthService {
+  Future<String> getPhoneNumber() async {
+    FormatNumberService _formatNumberService = FormatNumberService();
+      String formattedPhoneNumber = await _formatNumberService.formatPhoneNumber(
+          number: numberController.text);
+      return formattedPhoneNumber;
+  }
+
   Future<String> signup(
       {required String email,
       required String password,
@@ -13,9 +20,7 @@ class AuthService {
       await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
       message = 'Success';
-      FormatNumberService _formatNumberService = FormatNumberService();
-      String phoneNumber = await _formatNumberService.formatPhoneNumber(
-          number: numberController.text);
+      String phoneNumber = await getPhoneNumber();
       FirebaseFirestore.instance
           .collection('users')
           .doc(FirebaseAuth.instance.currentUser!.uid)
