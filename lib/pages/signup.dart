@@ -7,7 +7,7 @@ TextEditingController nameController = TextEditingController();
 TextEditingController _emailController = TextEditingController();
 TextEditingController _passwordController = TextEditingController();
 TextEditingController _confirmPasswordController = TextEditingController();
-TextEditingController _numberController = TextEditingController();
+TextEditingController numberController = TextEditingController();
 
 class Signup extends StatelessWidget {
   const Signup({super.key});
@@ -139,7 +139,7 @@ class Number extends StatelessWidget {
           height: 10,
         ),
         TextField(
-          controller: _numberController,
+          controller: numberController,
           cursorColor: Colors.black,
           obscureText: true,
           decoration: InputDecoration(
