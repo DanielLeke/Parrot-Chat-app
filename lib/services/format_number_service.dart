@@ -31,7 +31,7 @@ class FormatNumberService {
     return placemarks.first.isoCountryCode ?? 'NG';
   }
 
-  Future<String> formatPhoneNumber(String number) async {
+  Future<String> formatPhoneNumber({required String number}) async {
     String isoCode = await getIsoCode();
     bool? isValid = await PhoneNumberUtil.isValidPhoneNumber(
       phoneNumber: number,
