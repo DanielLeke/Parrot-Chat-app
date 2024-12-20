@@ -141,7 +141,6 @@ class Number extends StatelessWidget {
         TextField(
           controller: numberController,
           cursorColor: Colors.black,
-          obscureText: true,
           decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
                 borderSide: const BorderSide(
