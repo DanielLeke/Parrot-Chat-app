@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:parrot/pages/signup.dart';
+import 'package:parrot/services/associates_service.dart';
 import 'package:parrot/services/format_number_service.dart';
 
 class AuthService {
@@ -15,6 +16,7 @@ class AuthService {
       {required String email,
       required String password,
       required String name}) async {
+    AssociatesService _associatesService = AssociatesService();
     String message = '';
     try {
       await FirebaseAuth.instance
@@ -30,6 +32,7 @@ class AuthService {
         'name': name,
         'number': phoneNumber
       });
+      await _associatesService.findAssociates();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         message = 'The password provided is too weak';
