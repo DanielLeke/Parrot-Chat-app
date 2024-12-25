@@ -64,7 +64,7 @@ class _HomepageState extends State<Homepage> {
 
   Widget buildUserList() {
     return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance.collection('users').snapshots(),
+      stream: FirebaseFirestore.instance.collection('associates').snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return const Text("An error occurred");
