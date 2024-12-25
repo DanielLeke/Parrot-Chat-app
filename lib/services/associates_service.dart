@@ -14,4 +14,26 @@ class AssociatesService {
     }
     return contacts;
   }
+
+  Future<void> findAssociates() async {
+    Iterable<Contact>? contacts = await getContacts();
+    if (contacts != null) {
+      for (Contact contact in contacts) {
+        QuerySnapshot querySnapshot = await _firestore
+            .collection('users')
+            .where('number', isEqualTo: contact.phones!.first.value)
+            .get();
+        if (querySnapshot.docs.isEmpty) {
+          // Associate not found
+        } else {
+          _firestore.collection('associates').doc().set({
+            'uid': querySnapshot.docs.first.id,
+            'email': querySnapshot.docs.first['email'],
+            'name': querySnapshot.docs.first['name'],
+            'number': querySnapshot.docs.first['number'],
+          });
+        }
+      }
+    }
+  }
 }
