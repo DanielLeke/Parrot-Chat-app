@@ -18,33 +18,34 @@ class AssociatesService {
   }
 
   Future<void> findAssociates() async {
-    Iterable<Contact>? contacts = await getContacts();
-    if (contacts != null) {
-      for (Contact contact in contacts) {
-        if (contact.phones != null && contact.phones!.isNotEmpty) {
-          String? phoneNumber = contact.phones!.first.value;
-          if (phoneNumber != null) {
-            String formattedNumber =
-                await _formatNumberService.formatPhoneNumber(
-              number: phoneNumber,
-            );
+  Iterable<Contact>? contacts = await getContacts();
+  if (contacts == null) return;
 
-            QuerySnapshot querySnapshot = await _firestore
-                .collection('users')
-                .where('number', isEqualTo: formattedNumber)
-                .get();
+  // Batch all number formatting
+  List<String> formattedNumbers = await Future.wait(
+    contacts.where((c) => c.phones?.isNotEmpty ?? false).map((contact) async {
+      return await _formatNumberService.formatPhoneNumber(
+        number: contact.phones!.first.value!,
+      );
+    })
+  );
 
-            if (querySnapshot.docs.isNotEmpty) {
-              _firestore.collection('associates').doc().set({
-                'uid': querySnapshot.docs.first.id,
-                'email': querySnapshot.docs.first['email'],
-                'name': querySnapshot.docs.first['name'],
-                'number': formattedNumber,
-              });
-            }
-          }
-        }
-      }
-    }
+  // Batch Firestore query
+  QuerySnapshot querySnapshot = await _firestore
+      .collection('users')
+      .where('number', whereIn: formattedNumbers)
+      .get();
+
+  // Batch write operations
+  WriteBatch batch = _firestore.batch();
+  for (var doc in querySnapshot.docs) {
+    batch.set(_firestore.collection('associates').doc(), {
+      'uid': doc.id,
+      'email': doc['email'],
+      'name': doc['name'],
+      'number': doc['number'],
+    });
   }
+  await batch.commit();
+}
 }
