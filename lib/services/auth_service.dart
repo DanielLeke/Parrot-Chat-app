@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:parrot/pages/signup.dart';
+import 'package:parrot/services/contacts_service.dart';
 import 'package:parrot/services/format_number_service.dart';
 
 class AuthService {
@@ -20,6 +21,8 @@ class AuthService {
       await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
       message = 'Success';
+      ServiceOfContacts _serviceOfContacts = ServiceOfContacts();
+      List<String> conctactsNumbers = await _serviceOfContacts.formattedContactNumbers();
       String phoneNumber = await getPhoneNumber();
       FirebaseFirestore.instance
           .collection('users')
@@ -28,7 +31,8 @@ class AuthService {
         'uid': FirebaseAuth.instance.currentUser!.uid,
         'email': email,
         'name': name,
-        'number': phoneNumber
+        'number': phoneNumber,
+        'contact-numbers': conctactsNumbers
       });
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
