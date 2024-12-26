@@ -26,7 +26,7 @@ class ServiceOfContacts {
     return contactsPhoneNumbers;
   }
 
-  Future<Set<String>> formattedContactNumbers() async {
+  Future<List<String>> formattedContactNumbers() async {
     FormatNumberService _formatNumberService = FormatNumberService();
     List<String> phoneNumbersOfContacts = await contactPhoneNumbers();
 
@@ -37,6 +37,6 @@ class ServiceOfContacts {
     ))
         .where((number) => number.isNotEmpty));
 
-    return formattedNumbers;
+    return formattedNumbers.toList();
   }
 }
